@@ -2,10 +2,8 @@ FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-COPY . .
+COPY target/*.jar app.jar
 
-RUN ./mvnw clean package -DskipTests || mvn clean package -DskipTests
+EXPOSE 8080
 
-EXPOSE 8081
-
-CMD ["java","-jar","target/classbooking-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java","-jar","app.jar"]
